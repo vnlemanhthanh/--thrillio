@@ -1,5 +1,7 @@
 package edu.fx.thrillio.entities;
 
+import java.util.Arrays;
+
 public class Book extends Bookmark {
 	private int publicationYear;
 	private String publisher;
@@ -45,6 +47,14 @@ public class Book extends Bookmark {
 
 	public void setAmazoneRating(double amazoneRating) {
 		this.amazoneRating = amazoneRating;
+	}
+
+	@Override
+	public String toString() {
+	    return "Book [publicationYear=" + publicationYear + ", publisher="
+		    + publisher + ", authors=" + Arrays.toString(authors)
+		    + ", genre=" + genre + ", amazoneRating=" + amazoneRating
+		    + "]";
 	}
 
 }
