@@ -2,12 +2,10 @@ package edu.fx.thrillio.managers;
 
 import edu.fx.thrillio.entities.Book;
 import edu.fx.thrillio.entities.Movie;
-import edu.fx.thrillio.entities.Weblink;
+import edu.fx.thrillio.entities.WebLink;
 
 public class BookmarkManager {
     static private BookmarkManager instance = new BookmarkManager();
-    private double amazoneRating;
-
     private BookmarkManager() {
     }
 
@@ -15,9 +13,9 @@ public class BookmarkManager {
 	return instance;
     }
 
-    public Weblink createWebLink(long id, String title, String url,
+    public WebLink createWebLink(long id, String title, String url,
 	    String host) {
-	Weblink weblink = new Weblink();
+	WebLink weblink = new WebLink();
 	weblink.setId(id);
 	weblink.setTitle(title);
 	weblink.setUrl(url);
@@ -27,7 +25,7 @@ public class BookmarkManager {
     }
 
     public Book createBook(long id, String title, int publicationYear,
-	    String publisher, String[] authors, String genre) {
+	    String publisher, String[] authors, String genre, double amazoneRating) {
 	Book book = new Book();
 	book.setId(id);
 	book.setTitle(title);

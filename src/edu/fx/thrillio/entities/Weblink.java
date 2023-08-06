@@ -1,6 +1,6 @@
 package edu.fx.thrillio.entities;
 
-public class Weblink extends Bookmark {
+public class WebLink extends Bookmark {
 	private String url;
 	private String host;
 
