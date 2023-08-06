@@ -16,7 +16,15 @@ public class DataStore {
     private static final int BOOKMARK_TYPES_COUNT = 3;
     private static final int TOTAL_USER_COUNT = 5;
     private static User[] users = new User[TOTAL_USER_COUNT];
+    public static User[] getUsers() {
+        return users;
+    }
+
     private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
+    public static Bookmark[][] getBookmarks() {
+        return bookmarks;
+    }
+
     private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT
 	    * USER_BOOKMARK_LIMIT];
 

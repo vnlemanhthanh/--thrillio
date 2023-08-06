@@ -1,9 +1,11 @@
 package edu.fx.thrillio.managers;
 
+import edu.fx.thrillio.dao.UserDao;
 import edu.fx.thrillio.entities.User;
 
 public class UserManager {
 	static private UserManager instance =  new UserManager();
+	UserDao dao = new UserDao();
 	private UserManager() {}
 
 	static public UserManager getInstance() {

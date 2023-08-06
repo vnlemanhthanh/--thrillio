@@ -1,11 +1,13 @@
 package edu.fx.thrillio.managers;
 
+import edu.fx.thrillio.dao.BookmarkDao;
 import edu.fx.thrillio.entities.Book;
 import edu.fx.thrillio.entities.Movie;
 import edu.fx.thrillio.entities.WebLink;
 
 public class BookmarkManager {
     static private BookmarkManager instance = new BookmarkManager();
+    private static BookmarkDao dao = new BookmarkDao();
     private BookmarkManager() {
     }
 
