@@ -5,6 +5,7 @@ import edu.fx.thrillio.constants.UserType;
 import edu.fx.thrillio.controllers.BookmarkController;
 import edu.fx.thrillio.entities.Bookmark;
 import edu.fx.thrillio.entities.User;
+import edu.fx.thrillio.partner.Shareable;
 
 public class View {
     public static void browse(User user, Bookmark[][] bookmarks) {
@@ -25,22 +26,30 @@ public class View {
 		    }
 		}
 
-		// Mark as kid-friendly
 		if (user.getUserType().equals(UserType.EDITER)
 			|| user.getUserType().equals(UserType.CHIEF_EDITOR)) { // usertype
+
+		    // Mark as kid-friendly
 		    if (bookmark.getKidFriendlyStatus()
-			    .equals(KidFriendlyStatus.UNKNOWN)) { // mark
+			    .equals(KidFriendlyStatus.UNKNOWN)) { // unknown
 			if (bookmark.isKidFriendlyEligible()) { // isKidFriendlyEligible
 			    String kidFriendlyStatus = getKidFriendlyStatusDecision(
 				    bookmark);
 			    if (!kidFriendlyStatus
 				    .equals(KidFriendlyStatus.UNKNOWN)) {
-				bookmark.setKidFriendlyStatus(
-					kidFriendlyStatus);
-				System.out.println("Kid-friendly status: "
-					+ kidFriendlyStatus + ", " + bookmark);
+				BookmarkController.getInstance()
+					.setKidFriendlyStatus(user,
+						kidFriendlyStatus, bookmark);
 			    }
 			}
+		    }
+
+		    // Sharing !!!
+		    if (bookmark.getKidFriendlyStatus()
+			    .equals(KidFriendlyStatus.APPROVED)
+			    && bookmark instanceof Shareable) {
+			boolean isShared = getShareDecision();
+			BookmarkController.getInstance().share(user, bookmark);
 		    }
 		}
 
@@ -49,17 +58,22 @@ public class View {
 
     }
 
-    private static boolean getBookmarkDecision(Bookmark bookmark) {
+    // TODO: Below methods simulate user input. After IO, we take input via
+    // console
+    private static boolean getShareDecision() {
 	return Math.random() < 0.5 ? true : false;
     }
 
     private static String getKidFriendlyStatusDecision(Bookmark bookmark) {
 	double randomVal = Math.random();
-	return randomVal < 0.5 ? KidFriendlyStatus.UNKNOWN
-		: (randomVal >= 0.5 && randomVal < 0.75)
-			? KidFriendlyStatus.APPROVED
+	return randomVal >= 0.8 ? KidFriendlyStatus.UNKNOWN
+		: (randomVal < 0.4) ? KidFriendlyStatus.APPROVED
 			: KidFriendlyStatus.REJECTED;
 
+    }
+
+    private static boolean getBookmarkDecision(Bookmark bookmark) {
+	return Math.random() < 0.5 ? true : false;
     }
 
 //    public static void bookmark(User user, Bookmark[][] bookmarks) {

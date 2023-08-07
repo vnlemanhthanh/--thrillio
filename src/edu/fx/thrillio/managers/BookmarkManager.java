@@ -7,14 +7,16 @@ import edu.fx.thrillio.entities.Movie;
 import edu.fx.thrillio.entities.User;
 import edu.fx.thrillio.entities.UserBookmark;
 import edu.fx.thrillio.entities.WebLink;
+import edu.fx.thrillio.partner.Shareable;
 
 public class BookmarkManager {
-    private static  BookmarkManager instance = new BookmarkManager();
+    private static BookmarkManager instance = new BookmarkManager();
     private static BookmarkDao dao = new BookmarkDao();
+
     private BookmarkManager() {
     }
 
-    public static  BookmarkManager getInstance() {
+    public static BookmarkManager getInstance() {
 	return instance;
     }
 
@@ -30,7 +32,8 @@ public class BookmarkManager {
     }
 
     public Book createBook(long id, String title, int publicationYear,
-	    String publisher, String[] authors, String genre, double amazoneRating) {
+	    String publisher, String[] authors, String genre,
+	    double amazoneRating) {
 	Book book = new Book();
 	book.setId(id);
 	book.setTitle(title);
@@ -67,25 +70,28 @@ public class BookmarkManager {
 	UserBookmark userBookmark = new UserBookmark();
 	userBookmark.setUser(user);
 	userBookmark.setBookmark(bookmark);
-	
+
 	dao.saveUserBookmark(userBookmark);
-	
+
+    }
+
+    public void setKidFriendlyStatus(User user, String kidFriendlyStatus,
+	    Bookmark bookmark) {
+	bookmark.setKidFriendlyStatus(kidFriendlyStatus);
+	bookmark.setKidFriendMarkedBy(user);
+	System.out.println(
+		"Kid-friendly status: " + kidFriendlyStatus
+		+ ", Marked by: " + user.getEmail() + ", " + bookmark);
+
+    }
+
+    public void share(User user, Bookmark bookmark) {
+	bookmark.setSharedBy(user);
+	System.out.println("Data to be shares: ");
+	if (bookmark instanceof Book) {
+	    System.out.println(((Book) bookmark).getItemData());
+	} else if (bookmark instanceof WebLink) {
+	    System.out.println(((WebLink) bookmark).getItemData());
+	}
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
