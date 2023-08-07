@@ -16,39 +16,48 @@ public class Launch {
 	users = UserManager.getInstance().getUsers();
 	bookmarks = BookmarkManager.getInstance().getBookmarks();
 
-	System.out.println("Printing data ...");
-	printUserData();
-	printBookmarkData();
+	// System.out.println("Printing data ...");
+	// printUserData();
+	// printBookmarkData();
     }
 
-    private static void printUserData() {
+//    private static void printUserData() {
+//	for (User user : users) {
+//	    System.out.println(user);
+//	}
+//
+//    }
+//
+//    private static void printBookmarkData() {
+//	for (Bookmark[] bookmarkList : bookmarks) {
+//	    for (Bookmark bookmark : bookmarkList) {
+//		System.out.println(bookmark);
+//	    }
+//	}
+//
+//    }
+
+//    private static void startBookmarking() {
+//	System.out.println("\n2. Bookmarking ...");
+//	for (User user : users) {
+//	    View.bookmark(user, bookmarks);
+//	}
+//	
+//    }
+    
+    private static void start() {
+	//System.out.println("\n2. Browsing ...");
 	for (User user : users) {
-	    System.out.println(user);
-	}
-
-    }
-
-    private static void printBookmarkData() {
-	for (Bookmark[] bookmarkList : bookmarks) {
-	    for (Bookmark bookmark : bookmarkList) {
-		System.out.println(bookmark);
-	    }
-	}
-
-    }
-
-    private static void startBookmarking() {
-	System.out.println("\n2. Bookmarking ...");
-	for (User user : users) {
-	    View.bookmark(user, bookmarks);
+	    View.browse(user, bookmarks);
 	}
 	
-    }
+    }    
 
     // Client Test
     public static void main(String[] args) {
 	loadData();
-	startBookmarking();
+	//startBookmarking();
+	start();
 	
     }
 }

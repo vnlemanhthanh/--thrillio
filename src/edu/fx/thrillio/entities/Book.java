@@ -2,6 +2,8 @@ package edu.fx.thrillio.entities;
 
 import java.util.Arrays;
 
+import edu.fx.thrillio.constants.BookGenre;
+
 public class Book extends Bookmark {
 	private int publicationYear;
 	private String publisher;
@@ -55,6 +57,14 @@ public class Book extends Bookmark {
 		    + publisher + ", authors=" + Arrays.toString(authors)
 		    + ", genre=" + genre + ", amazoneRating=" + amazoneRating
 		    + "]";
+	}
+
+	@Override
+	public boolean isKidFriendlyEligible() {
+	    if (genre.contains(BookGenre.PHILOSOPHY) || genre.contains(BookGenre.SELF_HELP)) {
+		return false;
+	    }
+	    return true;
 	}
 
 }

@@ -2,6 +2,8 @@ package edu.fx.thrillio.entities;
 
 import java.util.Arrays;
 
+import edu.fx.thrillio.constants.MovieGenre;
+
 public class Movie extends Bookmark {
 	private int releaseYear;
 	private String[] cast;
@@ -55,5 +57,13 @@ public class Movie extends Bookmark {
 		    + Arrays.toString(cast) + ", directors="
 		    + Arrays.toString(directors) + ", genre=" + genre
 		    + ", imdbRating=" + imdbRating + "]";
+	}
+
+	@Override
+	public boolean isKidFriendlyEligible() {
+	    if (genre.equals(MovieGenre.HORROR) || genre.equals(MovieGenre.THRILLERS)) {
+		return false;
+	    }
+	    return true;
 	}
 }
