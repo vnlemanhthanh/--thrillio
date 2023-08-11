@@ -25,6 +25,7 @@ public class View {
 				.println("New item bookmarked -- " + bookmark);
 		    }
 		}
+		
 
 		if (user.getUserType().equals(UserType.EDITER)
 			|| user.getUserType().equals(UserType.CHIEF_EDITOR)) { // usertype

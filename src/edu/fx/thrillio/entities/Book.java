@@ -12,7 +12,7 @@ public class Book extends Bookmark implements Shareable {
     private String publisher;
     private String[] authors;
     private String genre;
-    private double amazoneRating;
+    private double amazonRating;
 
     public int getPublicationYear() {
 	return publicationYear;
@@ -46,19 +46,19 @@ public class Book extends Bookmark implements Shareable {
 	this.genre = genre;
     }
 
-    public double getAmazoneRating() {
-	return amazoneRating;
+    public double getAmazonRating() {
+	return amazonRating;
     }
 
-    public void setAmazoneRating(double amazoneRating) {
-	this.amazoneRating = amazoneRating;
+    public void setAmazonRating(double amazoneRating) {
+	this.amazonRating = amazoneRating;
     }
 
     @Override
     public String toString() {
 	return "Book [publicationYear=" + publicationYear + ", publisher="
 		+ publisher + ", authors=" + Arrays.toString(authors)
-		+ ", genre=" + genre + ", amazoneRating=" + amazoneRating + "]";
+		+ ", genre=" + genre + ", amazoneRating=" + amazonRating + "]";
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Book extends Bookmark implements Shareable {
 	builder.append("<publicationYear>").append(publicationYear)
 		.append("</publicationYear>");
 	builder.append("<genre>").append(genre).append("</genre>");
-	builder.append("<amazoneRating>").append(amazoneRating)
+	builder.append("<amazoneRating>").append(amazonRating)
 		.append("</amazoneRating>");
 	builder.append("<title>").append(getTitle()).append("</title>");
 	builder.append("</item>");
